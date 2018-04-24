@@ -1,0 +1,31 @@
+insert into shoppingwebsite.products (description, image, quantity, price) values ('otterbox ', 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/1972/1972006_sd.jpg;maxHeight=640;maxWidth=550', 10, 600);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('iPhone ', 'https://staticshop.o2.co.uk/product/images/iphone_se_16gb_rose_gold_header.png?cb=ca87b899b2ffa0499b9a577d0931ff3f', 10, 550);
+
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('OnePlus 5 ', 'http://www.satugadget.com.my/content/images/thumbs/0006919_oneplus-5-64gb-original-imported-set_600.jpeg', 50, 450);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('Samsung Note 7 ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjelVkGyDf-oHPj6d-WO-m0G1V-C_qbFED7JJ90PYQKGFeh3Zk9Q', 4, 800);
+
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('iPhone earbuds', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-Vq9HlLW5TGJEvLFJaRu6CXGmcqCsOL7BJYuy-w4x78UVweJ8', 7, 159.99);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('iPad ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSzyF9_eHWBgu6bQzbqGs4CQep-UnKvIko3urJst52BHKCqjuD', 8, 299.99);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('xiaomi phone ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUlhfov1FeF12ztP-rPfd8FuEBGTE8kepOqWA5bdibe5tiWDVYcw', 100, 249.99);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('Xiaomi Mi Band', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB-KIvIPGSwXWFMGyOZdNq4qXBLSRTwiS8cj_cTYAGwKCbPxCJ', 6, 34.99);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('Fitbit Blaze ', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeuPanWEnagAwWCC5mmyXC1JPSY-ez-pkQ7DSUMMMQYdz00-nO', 9, 199.99);
+
+
+insert into shoppingwebsite.products (description, image, quantity, price) values ('Fitbit Ioinic', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9mkxAvGRm2RwgAm0bDRuQx3kCdYMR_UqS5w6ynI6gPAzmJpjeJA', 8, 299.99);
+
