@@ -6,6 +6,7 @@
 <head>
 <title>welcome page</title>
 
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 <!--  copy the next line to JSPs that use the core template library -->
@@ -18,16 +19,27 @@
 
 <p>Welcome ${sessionScope.userName}</p>	
 
+<form action="${pageContext.request.contextPath}/Cart" method="get"> 
+	<input type="submit" value="My Cart">
+</form>
 
+<form  action="${pageContext.request.contextPath}/Orders" method="get">
+	<input type="submit"  value="Orders">
+</form>
 
 <form  action="${pageContext.request.contextPath}/Logout" method="post">
-<input type="submit" value="Logout"></form>
+	<input type="submit" value="Logout">
+</form>
 
-<form action="${pageContext.request.contextPath}/Cart" method="get"> <input type="submit" value="My Cart"></form>
 ${sessionScope.productAddedToCart }
+${sessionScope.cartConfirmationMessage}
 <%
 request.getSession().setAttribute("productAddedToCart", null);
+request.getSession().setAttribute("cartConfirmationMessage", null);
 %>
+
+
+
 <TABLE border="1">
 	<tr>
 	<td><b> Product Image </b> </td>
@@ -42,15 +54,15 @@ request.getSession().setAttribute("productAddedToCart", null);
     			<td><img SRC="${product.image}" height="100" width="100"/></td>
     			<td><b><c:out value="${product.description}"/></b></td>
     			<td><b><c:out value="${product.price}"/></b></td>
-    			<td><input name="Add to my cart" type="submit" value="Add to Cart"/>
-          		<input type="hidden" name="productId" value="${product.id}"> 
-          		<input type="hidden" name="productDescr" value="${product.description}">
+    			<td>
+    				<input name="Add to my cart" type="submit" value="Add to Cart"/>
+          			<input type="hidden" name="productId" value="${product.id}"> 
+          			<input type="hidden" name="productDescr" value="${product.description}">
           		</td>
   			</tr>
   		</form>
 	</c:forEach>
 </TABLE>
 
-</form>
 </body>
 </html>

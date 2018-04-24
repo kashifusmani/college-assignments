@@ -35,6 +35,7 @@ public class CartDao extends DbConfig {
 			pst.executeUpdate();			
 			return true;
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return false;
 		} finally {
 			closeConnection(con);
@@ -67,11 +68,31 @@ public class CartDao extends DbConfig {
 				products.add(p);
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return products;
 		} finally {
 			closeConnection(con);
 		}
 		return products;
+	}
+	
+	/**
+	 * Remove all items from user's cart once the order has been placed
+	 * @param userName
+	 */
+	public void clearCart(String userName) {
+		Connection con = getConnection();
+		try {
+			String query = "delete from  " + CART_TABLE	
+					+ " where username = ?";
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, userName);
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			closeConnection(con);
+		}
 	}
 
 }

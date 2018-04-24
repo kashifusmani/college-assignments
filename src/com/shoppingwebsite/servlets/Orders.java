@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shoppingwebsite.dao.ProductsDao;
-import com.shoppingwebsite.objects.Product;
+import com.shoppingwebsite.dao.OrdersDao;
+import com.shoppingwebsite.objects.ProductOrder;
 
-@WebServlet("/Products")
-public class Products extends HttpServlet {
+@WebServlet("/Orders")
+public class Orders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Retrieve all orders for a given user
+	 * Fetch all orders made by a user
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		Util.authenticateUser(request, response);
-		ProductsDao dao = new ProductsDao();
-		List<Product> products = dao.getAllProducts();
-		request.getSession().setAttribute("productsList", products);
-		request.getRequestDispatcher("/products.jsp").forward(request, response);
+		String userName = (String) request.getSession().getAttribute("userName");
+		OrdersDao dao = new OrdersDao();
+		List<ProductOrder> orders =dao.getAllOrders(userName);
+		request.getSession().setAttribute("ordersList", orders);
+		request.getRequestDispatcher("/orders.jsp").forward(request, response);
 	}
-
 }

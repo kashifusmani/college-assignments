@@ -32,6 +32,7 @@ public class Register extends HttpServlet {
 
 
 	/**
+	 * Register a new user
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

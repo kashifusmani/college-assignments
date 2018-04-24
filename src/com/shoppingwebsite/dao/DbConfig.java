@@ -12,6 +12,7 @@ public class DbConfig {
 	public static final String CART_TABLE = "cart";
 	public static final String LOGIN_TABLE = "login";
 	public static final String PRODUCTS_TABLE = "Products";
+	public static final String ORDERS_TABLE = "Orders";
 
 	
 	Connection getConnection() {	

@@ -2,9 +2,6 @@ package com.shoppingwebsite.dao;
 
 import java.sql.*;
 
-import javax.naming.InitialContext;
-import javax.sql.DataSource; 
-
 //This class takes care of all operations(user authentication and registration) that have to deal with login table
 public class LoginDao extends DbConfig { 
 	
@@ -23,6 +20,7 @@ public class LoginDao extends DbConfig {
 			ResultSet rst = pst.executeQuery();
 			return rst.next();		
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return false;
 		} finally {
 			closeConnection(con);
@@ -46,6 +44,7 @@ public class LoginDao extends DbConfig {
 			ResultSet rst = pst.executeQuery();
 			return rst.next();		
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return false;
 		} finally {
 			closeConnection(con);
@@ -61,7 +60,7 @@ public class LoginDao extends DbConfig {
 			pst.setString(2, password);
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			//do nothing
+			System.out.println(e.getMessage());
 		} finally {
 			closeConnection(con);
 		}

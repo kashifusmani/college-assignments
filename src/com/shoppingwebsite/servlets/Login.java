@@ -23,17 +23,10 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LoginDao dao = new LoginDao();
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Login() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-//TODO: Add Price for Product
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	*Log in a user
+	*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("loginButtonPressed") != null) {
 			String userName =  request.getParameter("userName");

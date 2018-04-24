@@ -8,12 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.sql.DataSource;
 
 import com.shoppingwebsite.objects.Product;
 
@@ -28,7 +22,7 @@ public class ProductsDao extends DbConfig {
     	List<Product> products = new ArrayList<Product>();
     	Connection con = getConnection();
 		try {
-			String query = "select id, description, image, price from " + PRODUCTS_TABLE;
+			String query = "select id, description, image, price from " + PRODUCTS_TABLE + " where quantity>0";
 			PreparedStatement pst = con.prepareStatement(query);
 			ResultSet rst = pst.executeQuery();
 			while(rst.next()) {
@@ -40,6 +34,7 @@ public class ProductsDao extends DbConfig {
 				products.add(p);
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			return products;
 		} finally {
 			closeConnection(con);
