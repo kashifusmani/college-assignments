@@ -19,7 +19,7 @@ public class DbConfig {
 		Connection con = null;
 		try {
 			InitialContext initialContext = new InitialContext();
-			DataSource dataSource = (DataSource) initialContext.lookup("java:/MySqlDS");
+			DataSource dataSource = (DataSource) initialContext.lookup("java:/library");
 			con = dataSource.getConnection();
 			
 			//Class.forName("com.mysql.jdbc.Driver");  

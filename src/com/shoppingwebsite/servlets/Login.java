@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.shoppingwebsite.dao.BooksDao;
 import com.shoppingwebsite.dao.LoginDao;
 import com.shoppingwebsite.dao.ProductsDao;
+import com.shoppingwebsite.objects.Book;
 import com.shoppingwebsite.objects.Product;
 
 /**
@@ -38,10 +40,10 @@ public class Login extends HttpServlet {
 			 
 			if (dao.authenticate(userName, password)) {
 				request.getSession().setAttribute("userName", userName);
-				ProductsDao dao = new ProductsDao();
-				List<Product> products = dao.getAllProducts();
-				request.setAttribute("productsList", products);
-				request.getRequestDispatcher("/products.jsp").forward(request, response);
+				BooksDao dao = new BooksDao();
+				List<Book> books = dao.getAllBooks();
+				request.setAttribute("booksList", books);
+				request.getRequestDispatcher("/books.jsp").forward(request, response);
 			} else {
 				request.getSession().setAttribute("UserNameOrPasswordError", "Username and password do not match, try again");
 				request.getRequestDispatcher("/index.jsp").forward(request, response);

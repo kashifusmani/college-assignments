@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.shoppingwebsite.dao.BooksDao;
 import com.shoppingwebsite.dao.LoginDao;
 import com.shoppingwebsite.dao.ProductsDao;
+import com.shoppingwebsite.objects.Book;
 import com.shoppingwebsite.objects.Product;
 
 /**
@@ -44,11 +46,10 @@ public class Register extends HttpServlet {
 				request.getRequestDispatcher("/register.jsp").forward(request, response);
 			} else {
 				dao.register(userName, password);
-				ProductsDao dao = new ProductsDao();
-				List<Product> products = dao.getAllProducts();
-				request.getSession().setAttribute("productsList", products);
-				request.getSession().setAttribute("userName", userName);
-				request.getRequestDispatcher("/products.jsp").forward(request, response);
+				BooksDao dao = new BooksDao();
+				List<Book> books = dao.getAllBooks();
+				request.setAttribute("booksList", books);
+				request.getRequestDispatcher("/books.jsp").forward(request, response);
 			}
 		}
 	}
