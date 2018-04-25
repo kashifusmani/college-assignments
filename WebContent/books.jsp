@@ -33,6 +33,36 @@ request.getSession().setAttribute("bookAdded", null);
 %>
 
 
+<table> 
+	<tr> Add a new Book </tr>
+	<form action="${pageContext.request.contextPath}/Add" method="post">
+		<tr>
+			<td>Description</td>
+			<td><input type="text" name="description" size="100"></td>
+		</tr>
+		<tr>
+			<td>Quantity Available</td>
+			<td><input type="text" name="quantity" size="12"></td>
+		</tr>
+		<tr>
+			<td>Author</td>
+			<td><input type="text" name="author" size="12"></td>
+		</tr>
+		<tr>
+			<td>Genre</td>
+			<td><input type="text" name="genre" size="12"></td>
+		</tr>
+		<tr>
+			<td>ISBN</td>
+			<td><input type="text" name="isbn" size="12"></td>
+		</tr>
+		<tr>
+			<td>Image Link(ex: http://somewebsite/img.png)</td>
+			<td><input type="text" name="image" size="12"></td>
+		</tr>
+		<input type="submit" name="addBook" value="Add">
+	</form>
+</table>
 
 <TABLE border="1">
 	<tr>
@@ -40,21 +70,28 @@ request.getSession().setAttribute("bookAdded", null);
 	<td><b> Description </b> </td>
 	<td><b> Quantity Available </b> </td>
 	<td><b> Author </b> </td>
-	<td><b> Genre </b> </td>
 	<td><b> ISBN </b> </td>
+	<td><b> Genre </b> </td>
+	<td><b> Delete </b> </td>
+	<td><b> Edit </b> </td>
 	</tr>
 
 	<c:forEach items='${booksList}' var="book">
-		<form action="${pageContext.request.contextPath}/Delete" method="post">
+		<form action="${pageContext.request.contextPath}/Edit" method="post">
   			<tr>
     			<td><img SRC="${book.image}" height="100" width="100"/></td>
     			<td><b><c:out value="${book.description}"/></b></td>
     			<td><b><c:out value="${book.quantity}"/></b></td>
-    			<td><b><c:out value="${book.quantity}"/></b></td>
+    			<td><b><c:out value="${book.author}"/></b></td>
+    			<td><b><c:out value="${book.isbn}"/></b></td>
+    			<td><b><c:out value="${book.genre}"/></b></td>
     			<td>
-    				<input name="Add to my cart" type="submit" value="Add to Cart"/>
-          			<input type="hidden" name="productId" value="${product.id}"> 
-          			<input type="hidden" name="productDescr" value="${product.description}">
+    				<input name="editaction" type="submit" value="Delete"/>
+          			<input type="hidden" name="bookId" value="${book.id}"> 
+          		</td>
+          		<td>
+    				<input name="editaction" type="submit" value="Edit"/>
+          			<input type="hidden" name="bookId" value="${book.id}"> 
           		</td>
   			</tr>
   		</form>

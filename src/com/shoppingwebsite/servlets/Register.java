@@ -46,6 +46,7 @@ public class Register extends HttpServlet {
 				request.getRequestDispatcher("/register.jsp").forward(request, response);
 			} else {
 				dao.register(userName, password);
+				request.getSession().setAttribute("userName", userName);
 				BooksDao dao = new BooksDao();
 				List<Book> books = dao.getAllBooks();
 				request.setAttribute("booksList", books);
