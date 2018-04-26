@@ -11,8 +11,11 @@
 <!--  copy the next line to JSPs that use the core template library -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <body>
+
 <h2><i>Welcome </i></h2>
-<p>Please enter your user name and password then click <b>Register</b>.</p>
+
+<p>Register here</p>
+
 <fieldset>
 
 <form  action="${pageContext.request.contextPath}/Register" method="post">
@@ -21,7 +24,7 @@
 			<td>${sessionScope.NamePassErr}</td>
 		</tr>
 		<tr>
-			<td>User Name</td>
+			<td>User</td>
 			<td><input type="text" name="userName" size="15"></td>
 		</tr>
 		<tr>

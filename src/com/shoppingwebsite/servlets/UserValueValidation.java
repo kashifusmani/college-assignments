@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserValueValidation {
 	
 	// checking whether user is authenticated or not. 
-	public static void authenticateUser(HttpServletRequest request, HttpServletResponse response)
+	public static void checkUserLoggedIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Getting value from session and checking if the user name is null or not.
 		if (request.getSession().getAttribute("userName") == null) {

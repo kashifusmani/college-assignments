@@ -17,7 +17,7 @@ public class Delete extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserValueValidation.authenticateUser(request, response);
+		UserValueValidation.checkUserLoggedIn(request, response);
 		String action = request.getParameter("editaction");
 		BooksDao dao = new BooksDao();
 		int bookId =Integer.parseInt(request.getParameter("bookId"));

@@ -18,16 +18,15 @@ import com.shoppingwebsite.objects.Book;
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Authenticate")
+public class Authenticate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LoginDao loginObj = new LoginDao();
-       
+
 
 	/**
 	*Log in a user
 	*/
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// If the user pressed the loging button
 		if (request.getParameter("loginButton") != null) {
@@ -42,6 +41,7 @@ public class Login extends HttpServlet {
 			 
 			 
 			// Authenticating user
+			LoginDao loginObj = new LoginDao();
 			if (loginObj.checkUserNameAndPassword(userName, password)) {
 				// Setting the user name in the session
 				request.getSession().setAttribute("userName", userName);

@@ -20,8 +20,7 @@ import com.shoppingwebsite.objects.Book;
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LoginDao loginObj = new LoginDao();
-       
+	   
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,10 +43,11 @@ public class Register extends HttpServlet {
 			String userName =  request.getParameter("userName");
 			
 			// If the user already exists, then throw the error
+			LoginDao loginObj = new LoginDao();
 			if (loginObj.isAUser(userName)) {
-				// Setting the error string in NamePassErr object and redirect to register.jsp page
+				// Setting the error string in NamePassErr object and redirect to createnewuser.jsp page
 				request.getSession().setAttribute("NamePassErr", "Username already exists, please try again");
-				request.getRequestDispatcher("/register.jsp").forward(request, response);
+				request.getRequestDispatcher("/createnewuser.jsp").forward(request, response);
 			} else {// If the user does not exist
 				// Registering the user 
 				loginObj.register(userName, password);

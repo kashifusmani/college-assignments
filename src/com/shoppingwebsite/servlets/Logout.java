@@ -15,10 +15,10 @@ public class Logout extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Authenticating user
-		UserValueValidation.authenticateUser(request, response);
-		// Setting user name and product list to null
+		UserValueValidation.checkUserLoggedIn(request, response);
+		// Setting user name and books list to null
 		request.getSession().setAttribute("userName", null);
-		request.setAttribute("productsList", null);
+		request.setAttribute("booksList", null);
 		// Redirecting to index.jsp page, and passing a message
 		request.getSession().setAttribute("logoutError", "User logged out");
 		request.getRequestDispatcher("/index.jsp").forward(request, response);

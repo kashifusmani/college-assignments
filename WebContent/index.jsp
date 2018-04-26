@@ -12,11 +12,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <body>
 ${sessionScope.logoutError }
-<p>Enter your user name and password. Then click <b>Log In</b>.</p>
+<p>Please enter login details</p>
 <fieldset>
 
-<form  action="${pageContext.request.contextPath}/Login" method="get">
-<table border="0">
+<form  action="${pageContext.request.contextPath}/Authenticate" method="post">
+<table border="1">
 		<tr>
 			<td>${sessionScope.NamePassErr }</td>
 		</tr>
@@ -30,7 +30,7 @@ ${sessionScope.logoutError }
 		</tr>
 </table>
 <input type="submit" name="loginButton" value="Login"></form>
-<p> User not registered? Click <a href="${pageContext.request.contextPath}/register.jsp" >Here</a>
+<p>  Register <a href="${pageContext.request.contextPath}/createnewuser.jsp" >Here</a>
 </fieldset>
 <% 
 request.getSession().setAttribute("NamePassErr", null);

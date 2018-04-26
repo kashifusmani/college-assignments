@@ -19,7 +19,7 @@ public class Add extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UserValueValidation.authenticateUser(request, response);
+		UserValueValidation.checkUserLoggedIn(request, response);
 		String description = request.getParameter("description");
 		String author = request.getParameter("author");
 		String isbn = request.getParameter("isbn");
