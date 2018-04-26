@@ -26,15 +26,21 @@
 <form  action="${pageContext.request.contextPath}/Logout" method="post">
 	<input type="submit" value="Logout">
 </form>
-
+<br/>
 ${sessionScope.bookAdded }
 <%
 request.getSession().setAttribute("bookAdded", null);
 %>
+<br/>
+${sessionScope.bookEdited }
+<%
+request.getSession().setAttribute("bookEdited", null);
+%>
+<br/>
 
-
-<table> 
+<table border="1"> 
 	<tr> Add a new Book </tr>
+	<br/>
 	<form action="${pageContext.request.contextPath}/Add" method="post">
 		<tr>
 			<td>Description</td>
@@ -42,28 +48,30 @@ request.getSession().setAttribute("bookAdded", null);
 		</tr>
 		<tr>
 			<td>Quantity Available</td>
-			<td><input type="text" name="quantity" size="12"></td>
+			<td><input type="text" name="quantity" size="100"></td>
 		</tr>
 		<tr>
 			<td>Author</td>
-			<td><input type="text" name="author" size="12"></td>
+			<td><input type="text" name="author" size="100"></td>
 		</tr>
 		<tr>
 			<td>Genre</td>
-			<td><input type="text" name="genre" size="12"></td>
+			<td><input type="text" name="genre" size="100"></td>
 		</tr>
 		<tr>
 			<td>ISBN</td>
-			<td><input type="text" name="isbn" size="12"></td>
+			<td><input type="text" name="isbn" size="100"></td>
 		</tr>
 		<tr>
 			<td>Image Link(ex: http://somewebsite/img.png)</td>
-			<td><input type="text" name="image" size="12"></td>
+			<td><input type="text" name="image" size="100"></td>
 		</tr>
 		<input type="submit" name="addBook" value="Add">
 	</form>
 </table>
 
+<br/>
+<p> Your present inventory </p>
 <TABLE border="1">
 	<tr>
 	<td><b> </b> </td>
@@ -77,14 +85,32 @@ request.getSession().setAttribute("bookAdded", null);
 	</tr>
 
 	<c:forEach items='${booksList}' var="book">
-		<form action="${pageContext.request.contextPath}/Edit" method="post">
+		<form action="${pageContext.request.contextPath}/Delete" method="post">
   			<tr>
-    			<td><img SRC="${book.image}" height="100" width="100"/></td>
-    			<td><b><c:out value="${book.description}"/></b></td>
-    			<td><b><c:out value="${book.quantity}"/></b></td>
-    			<td><b><c:out value="${book.author}"/></b></td>
-    			<td><b><c:out value="${book.isbn}"/></b></td>
-    			<td><b><c:out value="${book.genre}"/></b></td>
+    			<td>
+    				<img SRC="${book.image}" height="100" width="100"/>
+    				
+    			</td>
+    			<td>
+    				<b><c:out value="${book.description}"/></b>
+    					
+    			</td>    			
+    			<td>
+    				<b><c:out value="${book.quantity}"/></b>
+    				
+    			</td>
+    			<td>
+    				<b><c:out value="${book.author}"/></b>
+    				
+    			</td>
+    			<td>
+    				<b><c:out value="${book.isbn}"/></b>
+    				
+    			</td>
+    			<td>
+    				<b><c:out value="${book.genre}"/></b>
+    				
+    			</td>	
     			<td>
     				<input name="editaction" type="submit" value="Delete"/>
           			<input type="hidden" name="bookId" value="${book.id}"> 
@@ -92,6 +118,13 @@ request.getSession().setAttribute("bookAdded", null);
           		<td>
     				<input name="editaction" type="submit" value="Edit"/>
           			<input type="hidden" name="bookId" value="${book.id}"> 
+          			<input type="hidden" name="image" value="${book.image}">
+          			<input type="hidden" name="description" value="${book.description}">
+          			<input type="hidden" name="quantity" value="${book.quantity}">
+          			<input type="hidden" name="author" value="${book.author}">
+          			<input type="hidden" name="isbn" value="${book.isbn}">
+          			<input type="hidden" name="genre" value="${book.genre}">
+          			
           		</td>
   			</tr>
   		</form>

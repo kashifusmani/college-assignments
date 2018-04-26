@@ -18,32 +18,23 @@ public class Edit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Util.authenticateUser(request, response);
-		String action = request.getParameter("editaction");
-		if (action.equals("Delete")) {
-			BooksDao dao = new BooksDao();
-			int bookId =Integer.parseInt(request.getParameter("bookId"));
-			dao.delete(bookId);
-			//TODO: Use return value??
-			List<Book> books = dao.getAllBooks();
-			request.setAttribute("booksList", books);
-			request.getRequestDispatcher("/books.jsp").forward(request, response);
-		} else if (action.equals("Edit")) {
-			
-		}
-		
 		String description = request.getParameter("description");
 		String author = request.getParameter("author");
 		String isbn = request.getParameter("isbn");
 		String genre = request.getParameter("genre");
 		String image = request.getParameter("image");
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		
-		Book b = new Book(description, image, isbn, genre, author, quantity);
+		int bookId =Integer.parseInt(request.getParameter("bookId"));
 		BooksDao dao = new BooksDao();
-		dao.add(b);
+		Book b = new Book(bookId, description, image, isbn, genre, author, quantity);
+		dao.update(b);
 		List<Book> books = dao.getAllBooks();
 		request.setAttribute("booksList", books);
+		request.getSession().setAttribute("bookEdited", "book edited successfully");
 		request.getRequestDispatcher("/books.jsp").forward(request, response);
+				
+		
+		
 	}
 
 }
