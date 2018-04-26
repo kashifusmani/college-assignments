@@ -1,4 +1,4 @@
-package com.shoppingwebsite.dao;
+package com.library.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.List;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.shoppingwebsite.objects.Book;
+import com.library.objects.Book;
 
 public class BooksDao {
 	private static final String BOOKS_TABLE = "books";

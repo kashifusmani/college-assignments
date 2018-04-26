@@ -1,4 +1,4 @@
-package com.shoppingwebsite.servlets;
+package com.library.servlets;
 
 
 import java.io.IOException;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.shoppingwebsite.dao.BooksDao;
-import com.shoppingwebsite.dao.LoginDao;
-import com.shoppingwebsite.objects.Book;
+import com.library.dao.BooksDao;
+import com.library.dao.LoginHelper;
+import com.library.objects.Book;
 
 /**
  * Servlet implementation class Login
@@ -41,7 +41,7 @@ public class Authenticate extends HttpServlet {
 			 
 			 
 			// Authenticating user
-			LoginDao loginObj = new LoginDao();
+			LoginHelper loginObj = new LoginHelper();
 			if (loginObj.checkUserNameAndPassword(userName, password)) {
 				// Setting the user name in the session
 				request.getSession().setAttribute("userName", userName);

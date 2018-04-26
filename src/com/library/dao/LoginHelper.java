@@ -1,11 +1,11 @@
-package com.shoppingwebsite.dao;
+package com.library.dao;
 
 import java.sql.*;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class LoginDao { 
+public class LoginHelper { 
 	public static final String LOGIN_TABLE = "login";
 
 	// Checking if the user exists or not.

@@ -1,4 +1,4 @@
-package com.shoppingwebsite.servlets;
+package com.library.servlets;
 
 
 import java.io.IOException;
@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.shoppingwebsite.dao.BooksDao;
-import com.shoppingwebsite.dao.LoginDao;
-import com.shoppingwebsite.objects.Book;
+import com.library.dao.BooksDao;
+import com.library.dao.LoginHelper;
+import com.library.objects.Book;
 
 /**
  * Servlet implementation class Register
@@ -43,7 +43,7 @@ public class Register extends HttpServlet {
 			String userName =  request.getParameter("userName");
 			
 			// If the user already exists, then throw the error
-			LoginDao loginObj = new LoginDao();
+			LoginHelper loginObj = new LoginHelper();
 			if (loginObj.isAUser(userName)) {
 				// Setting the error string in NamePassErr object and redirect to createnewuser.jsp page
 				request.getSession().setAttribute("NamePassErr", "Username already exists, please try again");

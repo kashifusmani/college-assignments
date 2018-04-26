@@ -1,4 +1,4 @@
-package com.shoppingwebsite.objects;
+package com.library.objects;
 
 public class Book {
 
