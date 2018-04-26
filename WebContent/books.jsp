@@ -19,9 +19,6 @@
 
 <p><b> Hello ${sessionScope.userName} </b></p>	
 
-<form action="${pageContext.request.contextPath}/AddBook" method="get"> 
-	<input type="submit" value="My Cart">
-</form>
 
 <form  action="${pageContext.request.contextPath}/Logout" method="post">
 	<input type="submit" value="Logout">

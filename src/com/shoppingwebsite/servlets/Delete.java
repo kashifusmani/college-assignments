@@ -23,7 +23,6 @@ public class Delete extends HttpServlet {
 		int bookId =Integer.parseInt(request.getParameter("bookId"));
 		if (action.equals("Delete")) {
 			dao.delete(bookId);
-			//TODO: Use return value??
 			List<Book> books = dao.getAllBooks();
 			request.setAttribute("booksList", books);
 			request.getRequestDispatcher("/books.jsp").forward(request, response);

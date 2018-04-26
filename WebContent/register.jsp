@@ -18,7 +18,7 @@
 <form  action="${pageContext.request.contextPath}/Register" method="post">
 <table border="0">
 		<tr>
-			<td><div id="header" class="dark">${sessionScope.UserNameOrPasswordError }</div></td>
+			<td><div id="header" class="dark">${sessionScope.UserNameOrPasswordError}</div></td>
 		</tr>
 		<tr>
 			<td>User Name</td>

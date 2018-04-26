@@ -2,9 +2,11 @@ package com.shoppingwebsite.dao;
 
 import java.sql.*;
 
-//This class takes care of all operations(user authentication and registration) that have to deal with login table
-public class LoginDao extends DbConfig { 
-	
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class LoginDao { 
+	public static final String LOGIN_TABLE = "login";
 
 	/**
 	 * Check if a user with given userName already exists 
@@ -65,5 +67,26 @@ public class LoginDao extends DbConfig {
 			closeConnection(con);
 		}
 	}
+	
+	private Connection getConnection() {	
+		Connection con = null;
+		try {
+			InitialContext initialContext = new InitialContext();
+			DataSource dataSource = (DataSource) initialContext.lookup("java:/library");
+			con = dataSource.getConnection();			
+			} catch (Exception e) {
+			System.out.println(e);
+		}
+		return con;
+	}
+	
+	private void closeConnection(Connection c) {
+		try {
+			c.close();
+		} catch (SQLException e) {
+			//do nothing
+		}
+	}
+
 
 }

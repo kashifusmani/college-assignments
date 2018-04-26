@@ -13,9 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.shoppingwebsite.dao.BooksDao;
 import com.shoppingwebsite.dao.LoginDao;
-import com.shoppingwebsite.dao.ProductsDao;
 import com.shoppingwebsite.objects.Book;
-import com.shoppingwebsite.objects.Product;
 
 /**
  * Servlet implementation class Login
