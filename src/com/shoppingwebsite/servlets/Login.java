@@ -21,29 +21,37 @@ import com.shoppingwebsite.objects.Book;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LoginDao dao = new LoginDao();
+	private LoginDao loginObj = new LoginDao();
        
 
 	/**
 	*Log in a user
 	*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("loginButtonPressed") != null) {
+		
+		// If the user pressed the loging button
+		if (request.getParameter("loginButton") != null) {
+			
+			// Getting user name and password
 			String userName =  request.getParameter("userName");
 			String password = request.getParameter("password");
 			
+			// Creating a session and setting user name in session
 			HttpSession session = request.getSession(false);  	
 			session.setAttribute("userName", userName);
 			 
 			 
-			if (dao.authenticate(userName, password)) {
+			// Authenticating user
+			if (loginObj.checkUserNameAndPassword(userName, password)) {
+				// Setting the user name in the session
 				request.getSession().setAttribute("userName", userName);
 				BooksDao dao = new BooksDao();
 				List<Book> books = dao.getAllBooks();
 				request.setAttribute("booksList", books);
 				request.getRequestDispatcher("/books.jsp").forward(request, response);
 			} else {
-				request.getSession().setAttribute("UserNameOrPasswordError", "Username and password do not match, try again");
+				// If the user is not authenticated, then redirecting to index page with error message.
+				request.getSession().setAttribute("NamePassErr", "Invalid username and password");
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}			
 		}

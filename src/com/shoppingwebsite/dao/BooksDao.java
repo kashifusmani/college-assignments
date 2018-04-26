@@ -20,7 +20,7 @@ public class BooksDao {
 	 * @param b
 	 */
 	public void add(Book b) {
-		Connection con = getConnection();
+		Connection con = connectWithDataBase();
 		try {
 			String query = "insert into " + BOOKS_TABLE + 
 					" (description, image, quantity, author, genre, isbn) values (?,?,?,?,?,?)";
@@ -33,10 +33,8 @@ public class BooksDao {
 			pst.setString(6, b.getIsbn());
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} finally {
-			closeConnection(con);
-		}
+			e.printStackTrace();
+		} 
 	}
 	
 	/**
@@ -45,7 +43,7 @@ public class BooksDao {
 	 */
 	public List<Book> getAllBooks() {
 		List<Book> books = new ArrayList<>();
-		Connection con = getConnection();
+		Connection con = connectWithDataBase();
 		try {
 			String query = "select * from " + BOOKS_TABLE ;
 			PreparedStatement pst = con.prepareStatement(query);
@@ -62,11 +60,9 @@ public class BooksDao {
 				books.add(b);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return books;
-		} finally {
-			closeConnection(con);
-		}
+		} 
 		return books;
 	}
 	
@@ -76,7 +72,7 @@ public class BooksDao {
 	 * @return
 	 */
 	public boolean delete(int id) {
-		Connection con = getConnection();
+		Connection con = connectWithDataBase();
 		try {
 			String query = "delete from " + BOOKS_TABLE + 
 					" where id = ?";
@@ -85,11 +81,9 @@ public class BooksDao {
 			pst.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
-		} finally {
-			closeConnection(con);
-		}
+		} 
 	}
 	
 	/**
@@ -97,7 +91,7 @@ public class BooksDao {
 	 * @param b
 	 */
 	public boolean update(Book b) {
-		Connection con = getConnection();
+		Connection con = connectWithDataBase();
 		try {
 			String query = "update " + BOOKS_TABLE 
 					+ " set description = ?, image = ?, quantity = ?, author =?, isbn =?, genre = ?" 
@@ -113,31 +107,21 @@ public class BooksDao {
 			pst.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
-		} finally {
-			closeConnection(con);
-		}
+		} 
 	}
 	
 
-	private Connection getConnection() {	
+	private Connection connectWithDataBase() {	
 		Connection con = null;
 		try {
 			InitialContext initialContext = new InitialContext();
 			DataSource dataSource = (DataSource) initialContext.lookup("java:/library");
 			con = dataSource.getConnection();
 		} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return con;
-	}
-	
-	private void closeConnection(Connection c) {
-		try {
-			c.close();
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
 	}
 }

@@ -17,7 +17,7 @@ public class Edit extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Util.authenticateUser(request, response);
+		UserValueValidation.authenticateUser(request, response);
 		String description = request.getParameter("description");
 		String author = request.getParameter("author");
 		String isbn = request.getParameter("isbn");

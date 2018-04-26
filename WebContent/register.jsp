@@ -18,18 +18,18 @@
 <form  action="${pageContext.request.contextPath}/Register" method="post">
 <table border="0">
 		<tr>
-			<td><div id="header" class="dark">${sessionScope.UserNameOrPasswordError}</div></td>
+			<td>${sessionScope.NamePassErr}</td>
 		</tr>
 		<tr>
 			<td>User Name</td>
-			<td><input type="text" name="userName" size="12"></td>
+			<td><input type="text" name="userName" size="15"></td>
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td><input type="password" name="password" size="12"></td>
+			<td><input type="password" name="password" size="15"></td>
 		</tr>
 </table>
-<input type="submit" name="registerButtonPressed" value="Register"></form>
+<input type="submit" name="registerButton" value="Register"></form>
 </fieldset>
 </body>
 </html>

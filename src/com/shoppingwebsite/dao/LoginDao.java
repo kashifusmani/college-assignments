@@ -8,84 +8,59 @@ import javax.sql.DataSource;
 public class LoginDao { 
 	public static final String LOGIN_TABLE = "login";
 
-	/**
-	 * Check if a user with given userName already exists 
-	 * @param userName
-	 * @return true if exists, false otherwise.
-	 */
-	public boolean userExists(String userName) {
-		Connection con = getConnection();
+	// Checking if the user exists or not.
+	public boolean isAUser(String userName) {
+		// Creating a connection object
+		Connection con = connectWithDataBase();
 		try {
-			String query = "select * from " + LOGIN_TABLE + " where  username=?";
+			// Query to fetch all the values of the user
+			String query = "select * from " + LOGIN_TABLE + " where  username='" + userName + "'";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setString(1, userName);
 			ResultSet rst = pst.executeQuery();
 			return rst.next();		
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
-		} finally {
-			closeConnection(con);
 		}
 	}
 
-	/**
-	 * Authenticate a user with given username and password.
-	 * @param userName
-;	 * @param password
-	 * @return true if the userName password pair is correct, false otherwise
-	 */
-	public boolean authenticate(String userName, String password) {
-		Connection con = getConnection();
+	// Authenticating user
+	public boolean checkUserNameAndPassword(String userName, String password) {
+		Connection con = connectWithDataBase();
 		try {
 			String query = "select * from " + LOGIN_TABLE 
-					+ " where  username=? and password=?";
+					+ " where  username='" + userName + "' and password='" + password + "'";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setString(1, userName);
-			pst.setString(2, password);
 			ResultSet rst = pst.executeQuery();
 			return rst.next();		
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 			return false;
-		} finally {
-			closeConnection(con);
 		}
 	}
 	
+	// Registering the user into the database.
 	public void register(String userName, String password) {
-		Connection con = getConnection();
+		Connection con = connectWithDataBase();
 		try {
-			String query = "insert into "  + LOGIN_TABLE	+ " values  (?,?)";
+			String query = "insert into "  + LOGIN_TABLE	+ " values  ('" + userName + "','" + password + "')";
 			PreparedStatement pst = con.prepareStatement(query);
-			pst.setString(1, userName);
-			pst.setString(2, password);
 			pst.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} finally {
-			closeConnection(con);
+			e.printStackTrace();
 		}
 	}
 	
-	private Connection getConnection() {	
+	private Connection connectWithDataBase() {	
 		Connection con = null;
 		try {
 			InitialContext initialContext = new InitialContext();
 			DataSource dataSource = (DataSource) initialContext.lookup("java:/library");
 			con = dataSource.getConnection();			
 			} catch (Exception e) {
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		return con;
-	}
-	
-	private void closeConnection(Connection c) {
-		try {
-			c.close();
-		} catch (SQLException e) {
-			//do nothing
-		}
 	}
 
 

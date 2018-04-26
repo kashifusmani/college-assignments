@@ -12,28 +12,28 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <body>
 ${sessionScope.logoutError }
-<p>Please enter your user name and password. Then click <b>Log In</b>.</p>
+<p>Enter your user name and password. Then click <b>Log In</b>.</p>
 <fieldset>
 
 <form  action="${pageContext.request.contextPath}/Login" method="get">
 <table border="0">
 		<tr>
-			<td><div id="header" class="dark">${sessionScope.UserNameOrPasswordError }</div></td>
+			<td>${sessionScope.NamePassErr }</td>
 		</tr>
 		<tr>
 			<td>User Name</td>
-			<td><input type="text" name="userName" size="12"></td>
+			<td><input type="text" name="userName" size="15"></td>
 		</tr>
 		<tr>
 			<td>Password</td>
-			<td><input type="password" name="password" size="12"></td>
+			<td><input type="password" name="password" size="15"></td>
 		</tr>
 </table>
-<input type="submit" name="loginButtonPressed" value="login"></form>
-<p> Not registered? Click <a href="${pageContext.request.contextPath}/register.jsp" >Here</a>
+<input type="submit" name="loginButton" value="Login"></form>
+<p> User not registered? Click <a href="${pageContext.request.contextPath}/register.jsp" >Here</a>
 </fieldset>
 <% 
-request.getSession().setAttribute("UserNameOrPasswordError", null);
+request.getSession().setAttribute("NamePassErr", null);
 %>
 </body>
 </html>

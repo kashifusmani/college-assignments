@@ -20,7 +20,7 @@ import com.shoppingwebsite.objects.Book;
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private LoginDao dao = new LoginDao();
+	private LoginDao loginObj = new LoginDao();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -36,15 +36,24 @@ public class Register extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("registerButtonPressed") != null) {
-			String userName =  request.getParameter("userName");
+		if (request.getParameter("registerButton") != null) {
+			// Getting password
 			String password = request.getParameter("password");
-			if (dao.userExists(userName)) {
-				request.getSession().setAttribute("UserNameOrPasswordError", "Username already exists, try again");
+			
+			// Getting user name 
+			String userName =  request.getParameter("userName");
+			
+			// If the user already exists, then throw the error
+			if (loginObj.isAUser(userName)) {
+				// Setting the error string in NamePassErr object and redirect to register.jsp page
+				request.getSession().setAttribute("NamePassErr", "Username already exists, please try again");
 				request.getRequestDispatcher("/register.jsp").forward(request, response);
-			} else {
-				dao.register(userName, password);
+			} else {// If the user does not exist
+				// Registering the user 
+				loginObj.register(userName, password);
+				// Setting the user name in Session
 				request.getSession().setAttribute("userName", userName);
+			
 				BooksDao dao = new BooksDao();
 				List<Book> books = dao.getAllBooks();
 				request.setAttribute("booksList", books);
